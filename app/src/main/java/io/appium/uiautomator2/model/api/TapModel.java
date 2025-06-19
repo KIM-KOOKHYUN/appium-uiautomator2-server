@@ -16,18 +16,9 @@
 
 package io.appium.uiautomator2.model.api;
 
-import io.appium.uiautomator2.model.RequiredField;
+public class TapModel extends ElementModel {
+    public Double x;
+    public Double y;
 
-public class FindElementModel extends BaseModel {
-    @RequiredField
-    public String strategy;
-    @RequiredField
-    public String selector;
-    public String context;
-
-    //new
-    public Boolean skip;
-    public Long timeout;
-
-    public FindElementModel() {}
+    public TapModel() {}
 }

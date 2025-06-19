@@ -81,6 +81,13 @@ import io.appium.uiautomator2.http.IHttpRequest;
 import io.appium.uiautomator2.http.IHttpResponse;
 import io.appium.uiautomator2.http.IHttpServlet;
 
+import io.appium.uiautomator2.handler.ClickNew;
+import io.appium.uiautomator2.handler.FindElementNew;
+import io.appium.uiautomator2.handler.KillServer;
+import io.appium.uiautomator2.handler.SendKeysToElementNew;
+import io.appium.uiautomator2.handler.WakeUp;
+import io.appium.uiautomator2.handler.TapNew;
+
 public class AppiumServlet implements IHttpServlet {
 
     public static final String SESSION_ID_KEY = "SESSION_ID_KEY";
@@ -104,6 +111,10 @@ public class AppiumServlet implements IHttpServlet {
         registerGetHandler();
         registerPostHandler();
         registerDeleteHandler();
+
+        registerNewPostHandler();
+        registerNewGetHandler();
+        registerNewDeleteHandler();
     }
 
     private void registerDeleteHandler() {
@@ -179,6 +190,22 @@ public class AppiumServlet implements IHttpServlet {
         register(getHandler, new GetAlertText("/session/:sessionId/alert/text"));
         register(getHandler, new GetDeviceInfo("/session/:sessionId/appium/device/info"));
         register(getHandler, new GetDisplayDensity("/session/:sessionId/appium/device/display_density"));
+    }
+
+    private void registerNewPostHandler() {
+        register(postHandler, new ClickNew("/element/click"));
+        register(postHandler, new FindElementNew("/element"));
+        register(postHandler, new SendKeysToElementNew("/keys"));
+        register(postHandler, new SendKeysToElementNew("/element/keys"));
+        register(postHandler, new TapNew("/tap"));
+    }
+
+    private void registerNewGetHandler() {
+        register(getHandler, new Source("/source"));
+        register(getHandler, new WakeUp("/wakeup"));
+    }
+    private void registerNewDeleteHandler() {
+        register(deleteHandler, new KillServer("/server"));
     }
 
     private void register(Map<String, BaseRequestHandler> registerOn, BaseRequestHandler handler) {

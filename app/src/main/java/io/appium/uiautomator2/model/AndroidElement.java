@@ -24,6 +24,9 @@ import androidx.test.uiautomator.UiObjectNotFoundException;
 
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public interface AndroidElement {
 
     @Nullable By getBy();
@@ -178,4 +181,22 @@ public interface AndroidElement {
     boolean dragTo(final int destX, final int destY, final int steps) throws UiObjectNotFoundException;
     boolean dragTo(final Object destObj, final int steps) throws UiObjectNotFoundException;
     //endregion Gestures
+
+    default JSONObject getElementInfo() {
+        JSONObject elementInfo = new JSONObject();
+        try {
+            elementInfo.put("bounds",getBounds().toString());
+            elementInfo.put("centerX",getBounds().centerX());
+            elementInfo.put("centerY",getBounds().centerY());
+            elementInfo.put("resource-id",getAttribute("resource-id"));
+            elementInfo.put("text",getText());
+            elementInfo.put("desc",getContentDesc());
+            elementInfo.put("name",getName());
+            return elementInfo;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        } catch (UiObjectNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
