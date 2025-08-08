@@ -201,7 +201,7 @@ public class AppiumServlet implements IHttpServlet {
     }
 
     private void registerNewGetHandler() {
-        register(getHandler, new Source("/source"));
+        register(getHandler, new SourceNew("/source"));
         register(getHandler, new WakeUp("/wakeup"));
     }
     private void registerNewDeleteHandler() {

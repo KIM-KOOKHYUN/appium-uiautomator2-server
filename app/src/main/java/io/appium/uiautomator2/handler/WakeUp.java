@@ -36,7 +36,7 @@ import io.appium.uiautomator2.server.ServerInstrumentation;
 import io.appium.uiautomator2.utils.ByUiAutomatorFinder;
 import io.appium.uiautomator2.utils.NodeInfoList;
 
-public class WakeUp extends SafeRequestHandler {
+public class WakeUp extends SafeRequestNewHandler {
 
     public WakeUp(String mappedUri) {
         super(mappedUri);

@@ -27,7 +27,7 @@ import io.appium.uiautomator2.model.NotificationListener;
 import io.appium.uiautomator2.model.Session;
 import io.appium.uiautomator2.server.ServerInstrumentation;
 
-public class KillServer extends SafeRequestHandler {
+public class KillServer extends SafeRequestNewHandler {
 
     public KillServer(String mappedUri) {
         super(mappedUri);
